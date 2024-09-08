@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Resume Builder</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <h1>Dynamic Resume Builder</h1>
+    
+    <form id="resume-form">
+        <fieldset>
+            <legend>Personal Information</legend>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Education</legend>
+            <label for="degree">Degree:</label>
+            <input type="text" id="degree" name="degree" required><br>
+            <label for="institution">Institution:</label>
+            <input type="text" id="institution" name="institution" required><br>
+            <label for="year">Year of Graduation:</label>
+            <input type="number" id="year" name="year" required><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Work Experience</legend>
+            <label for="jobTitle">Job Title:</label>
+            <input type="text" id="jobTitle" name="jobTitle" required><br>
+            <label for="company">Company:</label>
+            <input type="text" id="company" name="company" required><br>
+            <label for="workYears">Years Worked:</label>
+            <input type="number" id="workYears" name="workYears" required><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Skills</legend>
+            <label for="skills">Skills (comma-separated):</label>
+            <input type="text" id="skills" name="skills" required><br>
+        </fieldset>
+
+        <button type="submit" id="generate-resume">Generate Resume</button>
+    </form>
+
+    <section id="resume-output">
+        <header>
+            <h2>Your Resume:</h2>
+        </header>
+        <div id="resume-content"></div>
+    </section>
+
+    <script>
+        const form = document.getElementById('resume-form');
+        const resumeOutput = document.getElementById('resume-content');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const degree = document.getElementById('degree').value;
+            const institution = document.getElementById('institution').value;
+            const year = document.getElementById('year').value;
+            const jobTitle = document.getElementById('jobTitle').value;
+            const company = document.getElementById('company').value;
+            const workYears = document.getElementById('workYears').value;
+            const skills = document.getElementById('skills').value;
+
+            const resumeHTML = `
+                <h2>Personal Information</h2>
+                <p>Name: ${name}</p>
+                <p>Email: ${email}</p>
+
+                <h2>Education</h2>
+                <p>Degree: ${degree}</p>
+                <p>Institution: ${institution}</p>
+                <p>Year of Graduation: ${year}</p>
+
+                <h2>Work Experience</h2>
+                <p>Job Title: ${jobTitle}</p>
+                <p>Company: ${company}</p>
+                <p>Years Worked: ${workYears}</p>
+
+                <h2>Skills</h2>
+                <p>${skills}</p>
+            `;
+
+            resumeOutput.innerHTML = resumeHTML;
+        });
+    </script>
+</body>
+</html>
